@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import Loader from './loader.jsx';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 const Container = styled.div`
   margin-bottom: 10px;
@@ -41,14 +42,15 @@ const Container = styled.div`
   }
 `;
 
-// azureuser athena2020!
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sitename: 'sdfas',
+      sitename: '',
       isLoaded: false,
+      data: []
     };
   }
 
@@ -68,26 +70,44 @@ class Main extends React.Component {
         result = match[1];
       }
     }
-    this.setState({
-      isLoaded: true,
-      sitename: result,
-    });
-    }.bind(this));
+      axios({
+        method: 'get',
+        url: 'http://localhost:3000/api/index/azure?sitename=' + result
+      })
+      .catch(function (error) {
+      // handle error
+        alert(error);
+      })
+      .then(function (res) {
+        console.log(res);
+        let data = res.data;
+        this.setState({
+              sitename: result,
+              isLoaded: true,
+              data: data
+            });
+      }.bind(this));
+    }.bind(this))
   }
   render() {
-    const { sitename, isLoaded } = this.state;
-    const data = [
-    "There are about 5 grams of CO2 emissions per Google search.",
-    "Google processes an approximate average of 47,000 requests every second, which represents an estimated amount of 500 kg of CO2 emissions per second.",
-    "Google accounts for 40% of the internet's CO2 emissions. All internet activity total accounts for the same amount of pollution as the global aviation industry.",
-  ];
-  const listItems = data.map((text) =>
+  const { sitename, isLoaded, data } = this.state;
+
+  let listItems = data.map((datapt) =>
     <div className = "outerBox">
     <div className ="box">
-      {text} <a href="https://qz.com/1267709/every-google-search-results-in-co2-emissions-this-real-time-dataviz-shows-how-much/" target="_blank">Source</a>
+      {datapt.mainText} <a href={datapt.source} target="_blank">Source</a>
     </div>
     </div>
   );
+
+  if(listItems.length == 0) {
+    listItems =
+      <div className = "outerBox">
+        <div className ="box">
+          Check back soon for information about this site's emissions!
+        </div>
+    </div>
+  }
 
     if (!isLoaded) {
       <Loader style={{ marginTop: '5%' }} />;

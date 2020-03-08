@@ -19,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@hot-loader/react-dom": "^16.11.0",
     "antd": "^4.0.1",
+    "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "react": "^16.12.0",
     "react-chartjs-2": "^2.9.0",
@@ -26,7 +27,8 @@
     "react-hot-loader": "^4.12.18",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.1.2",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "tedious": "^8.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.5",
