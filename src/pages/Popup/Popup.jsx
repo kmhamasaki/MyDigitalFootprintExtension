@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Main from './routes/main.jsx'
 import Charts from './routes/charts.jsx'
 import Profile from './routes/profile.jsx'
+import Watson from './routes/watson.jsx'
 import { Link, Router, Switch, withRouter, Route, Redirect } from 'react-router-dom';
 import PopupComponent from './PopupComponent.jsx'
 import styled from 'styled-components';
@@ -33,6 +34,7 @@ class Popup extends Component {
           <Route exact path='/' component={Main} />
           <Route path='/charts' component={Charts} />
           <Route path='/profile' component={Profile} />
+          <Route path='/watson' component={Watson} />
           <Redirect to="/" />
         </Switch>
       </PopupComponent>

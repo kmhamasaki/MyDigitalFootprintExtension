@@ -27,7 +27,7 @@ const Container = styled.div`
     justify-content: center;
   }
   .ant-menu-item {
-    width: 33.33%;
+    width: 25%;
   }
 `;
 
@@ -65,6 +65,11 @@ class PopupComponent extends Component {
               </Menu.Item>
               <Menu.Item key='/profile'>
                 <Link to='/profile'>
+                  <FontAwesomeIcon icon="user" />
+                </Link>
+              </Menu.Item>
+              <Menu.Item key='/watson'>
+                <Link to='/watson'>
                   <FontAwesomeIcon icon="user" />
                 </Link>
               </Menu.Item>
