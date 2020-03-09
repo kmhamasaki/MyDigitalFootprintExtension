@@ -70,7 +70,7 @@ class PopupComponent extends Component {
               </Menu.Item>
               <Menu.Item key='/watson'>
                 <Link to='/watson'>
-                  <FontAwesomeIcon icon="user" />
+                  <FontAwesomeIcon icon="comments" />
                 </Link>
               </Menu.Item>
             </Menu>
